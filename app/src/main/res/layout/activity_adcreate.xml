@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adcreate">
+    
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m_toolbar_height">
+
+        <ImageButton
+            android:id="@+id/toolbarBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:padding="10dp"/>
+        
+        <TextView
+            android:id="@+id/toolbarTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Ad"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/toolbarAdImageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_photo"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:background="@android:color/transparent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorGray02"/>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_below="@id/toolbarRl"
+        android:layout_above="@+id/postAdBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:id="@+id/imageLabelT"
+                android:text="Pick upto 10 images"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imagesRv"
+                android:layout_below="@id/imageLabelT"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                tools:listitem="@layout/row_images_picked"
+                app:spanCount="4"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/brandTil"
+                android:layout_width="match_parent"
+                android:layout_below="@id/imagesRv"
+                android:layout_marginTop="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Brand"
+                app:startIconDrawable="@drawable/ic_brand_white"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:layout_height="wrap_content" >
+                <EditText
+                    android:id="@+id/brandEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/categoryTill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:hint="Category"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:startIconDrawable="@drawable/ic_category_white"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                android:layout_below="@+id/brandTil">
+
+                <AutoCompleteTextView
+                    android:id="@+id/categoryAct"
+                    android:layout_width="match_parent"
+                    android:inputType="none"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/conditionTill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:hint="Condition"
+                app:startIconDrawable="@drawable/ic_condition_white"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                android:layout_below="@+id/categoryTill">
+
+                <AutoCompleteTextView
+                    android:id="@+id/conditionAct"
+                    android:layout_width="match_parent"
+                    android:inputType="none"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/locationTill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:hint="Location"
+                app:startIconDrawable="@drawable/ic_location_white"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                android:layout_below="@+id/conditionTill">
+
+                <AutoCompleteTextView
+                    android:id="@+id/locationAct"
+                    android:layout_width="match_parent"
+                    android:inputType="none"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            
+            
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priceTill"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/locationTill"
+                app:boxCornerRadiusTopStart="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Price"
+                app:startIconDrawable="@drawable/ic_wallet_white"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/priceEt"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleTill"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/priceTill"
+                app:boxCornerRadiusTopStart="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Title"
+                app:startIconDrawable="@drawable/baseline_title_24"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/titleEt"
+                    android:inputType="textPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionTill"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/titleTill"
+                app:boxCornerRadiusTopStart="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Description"
+                app:startIconDrawable="@drawable/ic_description_white"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/descriptionEt"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:layout_width="match_parent"
+                    android:minHeight="100dp"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </RelativeLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/postAdBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+         app:cornerRadius="8dp"
+        android:minHeight="@dimen/m_button_height"
+        android:text="Post Ad"
+        android:layout_margin="10dp" />
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
+            
+        
+
+
+
+
+
