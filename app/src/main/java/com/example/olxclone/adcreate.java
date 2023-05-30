@@ -103,7 +103,46 @@ public class adcreate extends AppCompatActivity {
             }
         });
 
+        binding.locationAct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =new Intent(adcreate.this,LocationPickerActivity.class);
+                locationPickerActivityResultLauncher.launch(intent);
+            }
+        });
+
     }
+
+    private ActivityResultLauncher<Intent> locationPickerActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+
+                    if (result.getResultCode() ==  Activity.RESULT_OK){
+
+                        Intent data = result.getData();
+                        if(data!=null){
+                            latitude = data.getDoubleExtra("latitude",0.0);
+                            longtitude = data.getDoubleExtra("longitude",0.0);
+                            address  = data.getStringExtra("address");
+
+                            Log.d(TAG, "onActivityResult: latitude"+latitude);
+                            Log.d(TAG, "onActivityResult: longitude"+longtitude);
+                            Log.d(TAG, "onActivityResult: address"+address);
+
+                            binding.locationAct.setText(address);
+                        }
+                    }else {
+
+                        Log.d(TAG, "onActivityResult: cancelled");
+                        Utils.toast(adcreate.this,"Cancelled");
+                    }
+                }
+            }
+    );
+
 
     private void loadImages()
     {
