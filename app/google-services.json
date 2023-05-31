@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "505948919920",
-    "project_id": "olx-clone-b0531",
-    "storage_bucket": "olx-clone-b0531.appspot.com"
+    "project_number": "883774287544",
+    "project_id": "rentyourstuff-d953a",
+    "storage_bucket": "rentyourstuff-d953a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:505948919920:android:1ae499c5059a9f5a083cb5",
+        "mobilesdk_app_id": "1:883774287544:android:8df1ed8efc0f7fc8680e4d",
         "android_client_info": {
           "package_name": "com.example.olxclone"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCPeedZYWsAUlRo7y7pMN6-6ECPFJ8oqpg"
+          "current_key": "AIzaSyAPjvgNKUO-Xar47wZc0F_dWbQIh2jK1L4"
         }
       ],
       "services": {
