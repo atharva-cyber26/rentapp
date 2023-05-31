@@ -32,13 +32,24 @@ import java.util.Locale;
                 "Fashion & Beauty",
                 "Books",
                 "Sports",
-                "Business",
                 "Agriculture"
         };
         public static final String[] conditions={"New","Used","Refurbished"};
     public static void toast(Context context, String message){
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
+    public static final int[] categoryIcons={
+            R.drawable.ic_category_mobile,
+            R.drawable.ic_category_laptop,
+            R.drawable.ic_category_electronics,
+            R.drawable.ic_category_car,
+            R.drawable.ic_category_furniture,
+            R.drawable.ic_category_fashion,
+            R.drawable.ic_category_book,
+            R.drawable.ic_category_sports,
+            R.drawable.ic_category_agriculture
+    };
 
         /** A function to get current timestamp
          * @return Return the current timestamp as long datatype

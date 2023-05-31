@@ -1,5 +1,9 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">RentYourStuff</string>
+=======
+    <string name="app_name">RENTYOURSTUFF</string>
+>>>>>>> e012a16 (Third Commit)
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -44,5 +48,11 @@
     <string name="forgot_password_enter_your_registered_email_we_will_send_password_recovery_instructions_to_it">Forgot Password? Enter your registered email, we will send password recovery instructions to it.</string>
     <string name="submit">SUBMIT</string>
     <string name="default_web_client_id">505948919920-jr8d72bg681rlci590r9b2janv6jqv07.apps.googleusercontent.com</string>
+<<<<<<< HEAD
     <string name="google_map_api_key">AIzaSyB95j_DZrApiehjcgFNnMzir0DVrssTJ6I</string>
+=======
+    <string name="google_map_api_key">AIzaSyBWrg7DncADiuqmFxrJn7md6BO_UwO7RXQ</string>
+    <string name="price_symbol">₹</string>
+
+>>>>>>> e012a16 (Third Commit)
 </resources>
