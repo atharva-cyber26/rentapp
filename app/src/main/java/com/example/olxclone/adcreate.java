@@ -155,7 +155,7 @@ public class adcreate extends AppCompatActivity {
 
     private void showImagePickOptions()
     {
-      Log.d(TAG,"showImagePickOptions:");
+        Log.d(TAG,"showImagePickOptions:");
         PopupMenu popupMenu=new PopupMenu(this,binding.toolbarAdImageBtn);
         popupMenu.getMenu().add(Menu.NONE,1,1,"Camera");
         popupMenu.getMenu().add(Menu.NONE,2,2,"Gallery");
@@ -169,16 +169,16 @@ public class adcreate extends AppCompatActivity {
 
                 if(itemId==1)
                 {
-                  if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU)
-                  {
-                     String cameraPermissions[]=new String[]{Manifest.permission.CAMERA};
-                     requestCameraPermission.launch(cameraPermissions);
-                  }
-                  else
-                  {
-                      String cameraPermissions[]=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                      requestCameraPermission.launch(cameraPermissions);
-                  }
+                    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU)
+                    {
+                        String cameraPermissions[]=new String[]{Manifest.permission.CAMERA};
+                        requestCameraPermission.launch(cameraPermissions);
+                    }
+                    else
+                    {
+                        String cameraPermissions[]=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestCameraPermission.launch(cameraPermissions);
+                    }
                 }
                 else if(itemId==2)
                 {
@@ -205,7 +205,7 @@ public class adcreate extends AppCompatActivity {
                     Log.d(TAG,"onActivityResult:isGranted:"+isGranted);
                     if(isGranted)
                     {
-                       pickImageGallery();
+                        pickImageGallery();
                     }else
                     {
                         Utils.toast(adcreate.this,"Storage Permission denied...");
@@ -230,7 +230,7 @@ public class adcreate extends AppCompatActivity {
                     }
                     if(areAllGranted)
                     {
-                      pickImageCamera();
+                        pickImageCamera();
                     }
                     else
                     {
@@ -328,167 +328,167 @@ public class adcreate extends AppCompatActivity {
                     }
             );
 
-        private String brand="";
-        private String category="";
-        private String condition="";
-        private String address="";
-        private String price="";
-        private String title="";
-        private String description="";
-        private double latitude=0;
-        private double longtitude=0;
-       private void validateData()
-       {
-         Log.d(TAG,"validateData:");
+    private String brand="";
+    private String category="";
+    private String condition="";
+    private String address="";
+    private String price="";
+    private String title="";
+    private String description="";
+    private double latitude=0;
+    private double longtitude=0;
+    private void validateData()
+    {
+        Log.d(TAG,"validateData:");
 
-         brand=binding.brandEt.getText().toString().trim();
-         category=binding.categoryAct.getText().toString().trim();
-         condition=binding.conditionAct.getText().toString().trim();
-         address=binding.locationAct.getText().toString().trim();
-         price=binding.priceEt.getText().toString().trim();
-         title=binding.titleEt.getText().toString().trim();
-         description=binding.descriptionEt.getText().toString().trim();
+        brand=binding.brandEt.getText().toString().trim();
+        category=binding.categoryAct.getText().toString().trim();
+        condition=binding.conditionAct.getText().toString().trim();
+        address=binding.locationAct.getText().toString().trim();
+        price=binding.priceEt.getText().toString().trim();
+        title=binding.titleEt.getText().toString().trim();
+        description=binding.descriptionEt.getText().toString().trim();
 
-         if(brand.isEmpty())
-         {
-             binding.brandEt.setError("Enter Brand");
-             binding.brandEt.requestFocus();
-         } else if (category.isEmpty()) {
-             binding.categoryAct.setError("Choose Category");
-             binding.categoryAct.requestFocus();
-         } else if (condition.isEmpty()) {
-             binding.conditionAct.setError("Choose Condition");
-             binding.conditionAct.requestFocus();
-         }/*else if (address.isEmpty()) {
+        if(brand.isEmpty())
+        {
+            binding.brandEt.setError("Enter Brand");
+            binding.brandEt.requestFocus();
+        } else if (category.isEmpty()) {
+            binding.categoryAct.setError("Choose Category");
+            binding.categoryAct.requestFocus();
+        } else if (condition.isEmpty()) {
+            binding.conditionAct.setError("Choose Condition");
+            binding.conditionAct.requestFocus();
+        }/*else if (address.isEmpty()) {
              binding.locationAct.setError("Choose Location");
              binding.locationAct.requestFocus();
 
          }*/ else if (title.isEmpty()) {
-             binding.titleEt.setError("Enter Title");
-             binding.titleEt.requestFocus();
-         }else if (description.isEmpty()) {
-             binding.descriptionEt.setError("Enter Description");
-             binding.descriptionEt.requestFocus();
-         }/*else if (imagePickedArrayList.isEmpty()) {
+            binding.titleEt.setError("Enter Title");
+            binding.titleEt.requestFocus();
+        }else if (description.isEmpty()) {
+            binding.descriptionEt.setError("Enter Description");
+            binding.descriptionEt.requestFocus();
+        }/*else if (imagePickedArrayList.isEmpty()) {
              Utils.toast(this,"Pick at-least one image");
          }*/ else
-         {
-             postAd();
-         }
-       }
+        {
+            postAd();
+        }
+    }
 
-       private void postAd()
-       {
-           Log.d(TAG,"postAd:");
+    private void postAd()
+    {
+        Log.d(TAG,"postAd:");
 
-           progressDialog.setMessage("Publishing Ad");
-           progressDialog.show();
+        progressDialog.setMessage("Publishing Ad");
+        progressDialog.show();
 
-           long timestamp=Utils.getTimeStamp();
-           DatabaseReference refAds= FirebaseDatabase.getInstance().getReference("Ads");
-           String keyId=refAds.push().getKey();
+        long timestamp=Utils.getTimeStamp();
+        DatabaseReference refAds= FirebaseDatabase.getInstance().getReference("Ads");
+        String keyId=refAds.push().getKey();
 
-           HashMap<String,Object> hashmap=new HashMap<>();
-           hashmap.put("id",""+keyId);
-           hashmap.put("uid",""+firebaseAuth.getUid());
-           hashmap.put("brand",""+brand);
-           hashmap.put("category",""+category);
-           hashmap.put("condition",""+condition);
-           hashmap.put("address",""+address);
-           hashmap.put("price",""+price);
-           hashmap.put("title",""+title);
-           hashmap.put("description",""+description);
-           hashmap.put("status",""+Utils.AD_STATUS_AVAILABLE);
-           hashmap.put("timestamp",timestamp);
-           hashmap.put("latitude",latitude);
-           hashmap.put("longitude",longtitude);
+        HashMap<String,Object> hashmap=new HashMap<>();
+        hashmap.put("id",""+keyId);
+        hashmap.put("uid",""+firebaseAuth.getUid());
+        hashmap.put("brand",""+brand);
+        hashmap.put("category",""+category);
+        hashmap.put("condition",""+condition);
+        hashmap.put("address",""+address);
+        hashmap.put("price",""+price);
+        hashmap.put("title",""+title);
+        hashmap.put("description",""+description);
+        hashmap.put("status",""+Utils.AD_STATUS_AVAILABLE);
+        hashmap.put("timestamp",timestamp);
+        hashmap.put("latitude",latitude);
+        hashmap.put("longitude",longtitude);
 
-           refAds.child(keyId).
-                   setValue(hashmap)
-                   .addOnSuccessListener(new OnSuccessListener<Void>() {
-                       @Override
-                       public void onSuccess(Void unused) {
-                           Log.d(TAG,"onSuccess:Ad Published");
+        refAds.child(keyId).
+                setValue(hashmap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG,"onSuccess:Ad Published");
 
-                           uploadImagesStorage(keyId);
-
-
-                       }
-                   })
-                   .addOnFailureListener(new OnFailureListener() {
-                       @Override
-                       public void onFailure(@NonNull Exception e) {
-                           Log.e(TAG,"onFailure:",e);
-                           progressDialog.dismiss();
-                           Utils.toast(adcreate.this,"Failed to publish Ad due to"+e.getMessage());
+                        uploadImagesStorage(keyId);
 
 
-                       }
-                   });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG,"onFailure:",e);
+                        progressDialog.dismiss();
+                        Utils.toast(adcreate.this,"Failed to publish Ad due to"+e.getMessage());
+
+
+                    }
+                });
 
 
 
-       }
-       private void uploadImagesStorage(String adId)
-       {
-           Log.d(TAG,"uploadImagesStorage:");
-           for(int i=0;i<imagePickedArrayList.size();i++)
-           {
-               ModelImagePicked modelImagePicked=imagePickedArrayList.get(i);
-               String imageName=modelImagePicked.getId();
-               String filePathAndName="Ads/"+imageName;
+    }
+    private void uploadImagesStorage(String adId)
+    {
+        Log.d(TAG,"uploadImagesStorage:");
+        for(int i=0;i<imagePickedArrayList.size();i++)
+        {
+            ModelImagePicked modelImagePicked=imagePickedArrayList.get(i);
+            String imageName=modelImagePicked.getId();
+            String filePathAndName="Ads/"+imageName;
 
-               StorageReference storageReference= FirebaseStorage.getInstance().getReference(filePathAndName);
+            StorageReference storageReference= FirebaseStorage.getInstance().getReference(filePathAndName);
 
-               int imageIndexForProgress=i+1;
+            int imageIndexForProgress=i+1;
 
-               storageReference.putFile(modelImagePicked.getImageUri())
-                       .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                           @Override
-                           public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+            storageReference.putFile(modelImagePicked.getImageUri())
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                             double progress=(100.0*snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
                             String message="Uploading.."+imageIndexForProgress+"of"+imagePickedArrayList.size()+"images...\nProgress"+(int)progress+"%";
 
                             progressDialog.setMessage(message);
                             progressDialog.show();
 
-                           }
-                       })
-                       .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                           @Override
-                           public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                               Log.d(TAG,"onSucess:");
-                               Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
-                               while(!uriTask.isSuccessful());
-                               Uri uploadedImageUrl=uriTask.getResult();
+                        }
+                    })
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.d(TAG,"onSucess:");
+                            Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
+                            while(!uriTask.isSuccessful());
+                            Uri uploadedImageUrl=uriTask.getResult();
 
-                               if(uriTask.isSuccessful()){
-                                   HashMap<String,Object> hashMap=new HashMap<>();
-                                   hashMap.put("id",""+modelImagePicked.imageUri);
-                                   hashMap.put("imageUrl",""+uploadedImageUrl);
+                            if(uriTask.isSuccessful()){
+                                HashMap<String,Object> hashMap=new HashMap<>();
+                                hashMap.put("id",""+modelImagePicked.getId());
+                                hashMap.put("imageUrl",""+uploadedImageUrl);
 
-                                   DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Ads");
-                                   ref.child(adId).child("Images")
-                                           .child(imageName)
-                                           .updateChildren(hashMap);
+                                DatabaseReference ref=FirebaseDatabase.getInstance().getReference("Ads");
+                                ref.child(adId).child("Images")
+                                        .child(imageName)
+                                        .updateChildren(hashMap);
 
-                               }
-                               progressDialog.dismiss();
+                            }
+                            progressDialog.dismiss();
 
-                           }
-                       })
-                       .addOnFailureListener(new OnFailureListener() {
-                           @Override
-                           public void onFailure(@NonNull Exception e) {
-                               Log.e(TAG,"onFaliure",e);
-                               progressDialog.dismiss();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e(TAG,"onFaliure",e);
+                            progressDialog.dismiss();
 
-                           }
-                       });
+                        }
+                    });
 
 
-           }
-       }
+        }
+    }
 
 
 }
