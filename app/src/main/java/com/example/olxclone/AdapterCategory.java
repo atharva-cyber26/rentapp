@@ -57,7 +57,9 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              rvListenerCategory.onCategoryClick(modelCategory);
+
+                //holder.categoryTitleTv.setTextColor();
+                rvListenerCategory.onCategoryClick(modelCategory);
             }
         });
 

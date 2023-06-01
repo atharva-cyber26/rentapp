@@ -63,6 +63,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:id="@+id/imageLabelT"
                 android:text="Pick upto 10 images"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,6 +86,7 @@
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusBottomEnd="8dp"
                 android:layout_height="wrap_content" >
+
                 <EditText
                     android:id="@+id/brandEt"
                     android:layout_width="match_parent"

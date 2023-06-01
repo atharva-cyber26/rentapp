@@ -92,8 +92,8 @@ public class AdapterAd extends RecyclerView.Adapter<AdapterAd.HolderAd> implemen
 
                         for (DataSnapshot ds:snapshot.getChildren())
                         {
-                            String imageUrl=""+ ds.child("imageUrl");
-                            Log.d(TAG,"onDataChange:imageUrl:"+imageUrl);
+                            String imageUrl=""+ ds.child("imageUrl").getValue();
+                            Log.d(TAG,"onDataChange:imageUrl:"+ imageUrl);
 
                             try {
                                 Glide.with(context)

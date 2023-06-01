@@ -39,7 +39,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:id="@+id/searchEt"
-          android:drawableStart="@drawable/ic_location_gray"
+          android:drawableStart="@drawable/ic_search_grey"
           android:drawablePadding="10dp"
           android:padding="10dp"
           android:hint="Search"/>
@@ -65,7 +65,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adsRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/row_ad"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 

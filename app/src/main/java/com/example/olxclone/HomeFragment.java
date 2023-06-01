@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
 
         locationsp=mContext.getSharedPreferences("LOCATION_SP",Context.MODE_PRIVATE);
         currentLatitude=locationsp.getFloat("CURRENT_LATITUDE",0.0f);
-        currentLongtitude=locationsp.getFloat("CURRENT_LONGTITUDE",0.0f);
+        currentLongtitude=locationsp.getFloat("CURRENT_LONGITUDE",0.0f);
         currentAddress=locationsp.getString("CURRENT_ADDRESS","");
 
         if(currentLatitude !=0.0 && currentLongtitude !=0.0)
@@ -126,7 +126,9 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    private ActivityResultLauncher<Intent> locationPickerActivityResult=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+    private ActivityResultLauncher<Intent> locationPickerActivityResult=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
 
@@ -144,12 +146,13 @@ public class HomeFragment extends Fragment {
 
                    locationsp.edit()
                            .putFloat("CURRENT_LATITUDE", Float.parseFloat(""+currentLatitude))
-                   .putFloat("CURRENT_LONGTITUDE",Float.parseFloat(""+currentLongtitude))
+                            .putFloat("CURRENT_LONGITUDE",Float.parseFloat(""+currentLongtitude))
                            .putString("CURRENT_ADDRESS",currentAddress)
                    .apply();
 
                    binding.locationTv.setText(currentAddress);
 
+                   loadAds("All");
 
                }
             }else
@@ -177,7 +180,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCategoryClick(ModelCategory modelCategory) {
 
+
                 loadAds(modelCategory.getCategory());
+
 
             }
         });

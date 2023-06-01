@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.olxclone.databinding.ActivityAdcreateBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -80,6 +81,7 @@ public class adcreate extends AppCompatActivity {
 
         imagePickedArrayList=new ArrayList<>();
         loadImages();
+
         binding.toolbarBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +101,8 @@ public class adcreate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 validateData();
+
+                clearFields();
 
             }
         });
@@ -377,6 +381,17 @@ public class adcreate extends AppCompatActivity {
         }
     }
 
+    private void clearFields(){
+        binding.brandEt.setText("");
+        binding.categoryAct.setText("");
+        binding.conditionAct.setText("");
+        binding.locationAct.setText("");
+        binding.priceEt.setText("");
+        binding.titleEt.setText("");
+        binding.descriptionEt.setText("");
+
+
+    }
     private void postAd()
     {
         Log.d(TAG,"postAd:");
@@ -409,7 +424,7 @@ public class adcreate extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG,"onSuccess:Ad Published");
-
+                        Toast.makeText(adcreate.this, "Ad Posted Successfully", Toast.LENGTH_SHORT).show();
                         uploadImagesStorage(keyId);
 
 

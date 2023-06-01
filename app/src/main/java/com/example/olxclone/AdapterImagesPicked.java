@@ -1,5 +1,6 @@
 package com.example.olxclone;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.olxclone.databinding.RowImagesPickedBinding;
-
 
 import java.util.ArrayList;
 
@@ -39,7 +39,8 @@ public class AdapterImagesPicked extends RecyclerView.Adapter<AdapterImagesPicke
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderImagesPicked holder, int position) {
+    @SuppressLint("RecyclerView")
+    public void onBindViewHolder(@NonNull HolderImagesPicked holder,  int position) {
 
         ModelImagePicked model=imagePickedArrayList.get(position);
 
@@ -70,7 +71,7 @@ public class AdapterImagesPicked extends RecyclerView.Adapter<AdapterImagesPicke
 
     @Override
     public int getItemCount() {
-        return 0;
+        return imagePickedArrayList.size();
     }
 
     class  HolderImagesPicked extends RecyclerView.ViewHolder
