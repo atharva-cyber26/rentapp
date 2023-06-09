@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
     private static final String TAG="HOME_TAG";
 
 
-    private static final int MAX_DISTANCE_TO_LOAD_ADS_KM=10;
+    private static final int MAX_DISTANCE_TO_LOAD_ADS_KM=50;
 
     private double currentLatitude=0.0;
     private double currentLongtitude=0.0;
@@ -210,19 +210,19 @@ public class HomeFragment extends Fragment {
 
                     if(category.equals("All"))
                     {
-                        if(distance<=MAX_DISTANCE_TO_LOAD_ADS_KM)
-                        {
+//                        if(distance<=MAX_DISTANCE_TO_LOAD_ADS_KM)
+//                        {
                             adArrayList.add(modelAd);
-                        }
+//                        }
 
                     }else
                     {
                         if(modelAd.category.equals(category))
                         {
-                            if(distance<=MAX_DISTANCE_TO_LOAD_ADS_KM)
-                            {
+//                            if(distance<=MAX_DISTANCE_TO_LOAD_ADS_KM)
+//                            {
                                 adArrayList.add(modelAd);
-                            }
+//                            }
                         }
                     }
                     
