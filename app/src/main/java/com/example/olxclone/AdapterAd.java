@@ -70,6 +70,12 @@ public class AdapterAd extends RecyclerView.Adapter<AdapterAd.HolderAd> implemen
 
         loadAdFirstImage(modelAd,holder);
 
+        if (firebaseAuth.getCurrentUser() != null){
+
+            checkIsFavourite(modelAd,holder);
+
+        }
+
         holder.titleTv.setText(title);
         holder.descriptionTv.setText(description);
         holder.addressTv.setText(address);
@@ -77,6 +83,49 @@ public class AdapterAd extends RecyclerView.Adapter<AdapterAd.HolderAd> implemen
         holder.priceTv.setText(price);
         holder.dateTv.setText(formattedDate);
 
+        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean favourite = modelAd.isFavorite();
+
+                if (favourite){
+                    Utils.removeFromFavourite(context,modelAd.getId());
+                }
+                else{
+                    Utils.addToFavourite(context,modelAd.getId());
+                }
+            }
+        });
+
+    }
+
+    private void checkIsFavourite(ModelAd modelAd, HolderAd holder) {
+
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid()).child("Favourites").child(modelAd.getId())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        boolean favourite = snapshot.exists();
+
+                        modelAd.setFavorite(favourite);
+
+                        if (favourite){
+
+                            holder.favBtn.setImageResource(R.drawable.ic_fav_yes);
+                        }
+                        else{
+                            holder.favBtn.setImageResource(R.drawable.ic_fav_no);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private void loadAdFirstImage(ModelAd modelAd, HolderAd holder) {
@@ -113,6 +162,7 @@ public class AdapterAd extends RecyclerView.Adapter<AdapterAd.HolderAd> implemen
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
+                        Log.d(TAG, "onCancelled: Cancelled");
                     }
                 });
 

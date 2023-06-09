@@ -2,7 +2,7 @@
 
     <string name="app_name">RentYourStuff</string>
 
->>>>>>> e012a16 (Third Commit)
+    >>>>>>> e012a16 (Third Commit)
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
@@ -53,5 +53,5 @@
 
     <string name="price_symbol">₹</string>
 
->>>>>>> e012a16 (Third Commit)
+    >>>>>>> e012a16 (Third Commit)
 </resources>

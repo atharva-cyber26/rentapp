@@ -5,7 +5,16 @@ import android.text.format.DateFormat;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -66,5 +75,64 @@ import java.util.Locale;
         String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
         return date;
+    }
+
+    public  static void addToFavourite(Context context, String adId){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser()==null){
+            Utils.toast(context,"You're not logged in! ");
+        }
+        else {
+            long timestamp = Utils.getTimeStamp();
+
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("adId",adId);
+            hashMap.put("timestamp",timestamp);
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            ref.child(firebaseAuth.getUid()).child("Favourites").child(adId)
+                    .setValue(hashMap)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Utils.toast(context,"Added to Favourites");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Utils.toast(context,"Failed to add to Favourites");
+                        }
+                    });
+
+        }
+    }
+
+    public static void removeFromFavourite(Context context, String adId){
+
+        FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser()==null){
+            Utils.toast(context,"You're not logged in! ");
+        }
+        else{
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            ref.child(firebaseAuth.getUid()).child("Favourites").child(adId)
+                    .removeValue()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                            Utils.toast(context,"Removed Successfully");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Utils.toast(context,"Failed to remove from favourites"+ e.getMessage());
+                        }
+                    });
+        }
     }
 }

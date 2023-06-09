@@ -103,7 +103,6 @@
             android:text="00"
             android:textSize="12sp" />
 
-
         <TextView
             android:id="@+id/dateTv"
             style="@style/TextAppearance.MaterialComponents.Caption"
@@ -111,19 +110,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
-            android:layout_alignParentEnd="true"
+            android:paddingStart="25dp"
+            android:layout_toEndOf="@id/priceTv"
             android:text="DD/MM/YYYY"
             android:layout_marginEnd="10dp"
             android:layout_below="@+id/addressTv"/>
 
-
-
-
-
-
-
-
-
+        <Button
+            android:id="@+id/chatBtn"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:textSize="12sp"
+            android:layout_toEndOf="@id/dateTv"
+            android:layout_below="@id/addressTv"
+            android:text="Chat"/>
 
 
 

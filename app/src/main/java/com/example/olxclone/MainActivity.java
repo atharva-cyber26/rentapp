@@ -110,16 +110,23 @@ public class MainActivity extends AppCompatActivity {
         binding.toolbarTitleTv.setText(R.string.chats);
 
         //Show ChatsFragment
-        ChatsFragment fragment = new ChatsFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(binding.fragmentsFl.getId(), fragment, "ChatsFragment");
-        fragmentTransaction.commit();
+
+        Intent intent = new Intent(binding.getRoot().getContext(), Users.class);
+        binding.getRoot().getContext().startActivity(intent);
+
+//        ChatsFragment fragment = new ChatsFragment();
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(binding.fragmentsFl.getId(), fragment, "ChatsFragment");
+//        fragmentTransaction.commit();
     }
     private void showMyAdsFragment(){
         //change toolbar textview text/title to My Ads
         binding.toolbarTitleTv.setText(R.string.my_ads);
 
         //Show MyAdsFragment
+
+
+
         MyAdsFragment fragment = new MyAdsFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(binding.fragmentsFl.getId(), fragment, "MyAdsFragment");

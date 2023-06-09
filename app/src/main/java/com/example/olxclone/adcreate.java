@@ -403,6 +403,7 @@ public class adcreate extends AppCompatActivity {
         DatabaseReference refAds= FirebaseDatabase.getInstance().getReference("Ads");
         String keyId=refAds.push().getKey();
 
+        price = price + "/Mo";
         HashMap<String,Object> hashmap=new HashMap<>();
         hashmap.put("id",""+keyId);
         hashmap.put("uid",""+firebaseAuth.getUid());
